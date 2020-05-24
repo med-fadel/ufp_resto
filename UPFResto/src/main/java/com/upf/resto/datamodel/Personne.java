@@ -1,23 +1,16 @@
 package com.upf.resto.datamodel;
 
-import java.awt.image.BufferedImage;
 import java.util.Date;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Personne {
-	String nom;
-	String prenom;
-	Date dateDeNaissance;
-	String sexe;
-	String email;
-	BufferedImage imageP;
-	
-	public Personne(String nom, String prenom, Date dateDeNaissance, String sexe, String email) {
-		this.nom = nom;
-		this.prenom = prenom;
-		this.dateDeNaissance = dateDeNaissance;
-		this.sexe = sexe;
-		this.email = email;
-	}
+	private String nom;
+	private String prenom;
+	private Date dateDeNaissance;
+	private String sexe;
+	private String email;
 
 	public String getNom() {
 		return nom;
@@ -39,10 +32,6 @@ public class Personne {
 		return email;
 	}
 
-	public BufferedImage getImageP() {
-		return imageP;
-	}
-
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
@@ -62,12 +51,4 @@ public class Personne {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	public void setImageP(BufferedImage imageP) {
-		this.imageP = imageP;
-	}
-	
-	
-	
-	
 }

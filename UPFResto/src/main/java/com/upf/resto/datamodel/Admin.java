@@ -1,15 +1,30 @@
 package com.upf.resto.datamodel;
 
-import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity
 public class Admin extends Personne{
-	String loging;
-	String mdp;
-	
-	public Admin(String nom, String prenom, Date dateDeNaissance, String sexe, String email, String loging,
-			String mdp) {
-		super(nom, prenom, dateDeNaissance, sexe, email);
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private String loging;
+	private String mdp;
+
+	public String getLoging() {
+		return loging;
+	}
+
+	public String getMdp() {
+		return mdp;
+	}
+
+	public void setLoging(String loging) {
 		this.loging = loging;
+	}
+
+	public void setMdp(String mdp) {
 		this.mdp = mdp;
 	}
 }
