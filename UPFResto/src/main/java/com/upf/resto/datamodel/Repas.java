@@ -12,13 +12,6 @@ public class Repas {
 	private String id;
 	private Double prix;
 	private Double quantite;
-	
-	public Repas(String id, Double prix, Double quantite) {
-		super();
-		this.id = id;
-		this.prix = prix;
-		this.quantite = quantite;
-	}
 
 	public String getId() {
 		return id;

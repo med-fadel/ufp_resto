@@ -23,10 +23,12 @@ public class CommandeManager{
 	}
 	
 	public void validerCommande(String id) {
-		
+		Commande commande = repository.findOne(id);
+		commande.setValide(true);
+		repository.save(commande);
 	}
 	
-	List<Commande> listerCommandes(){
+	public List<Commande> listerCommandes(){
 		List<Commande> res = new ArrayList<>();
 		repository.findAll().forEach(res::add);
 		return res;
