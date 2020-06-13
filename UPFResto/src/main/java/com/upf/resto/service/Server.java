@@ -15,7 +15,7 @@ public class Server {
 			Remote stub = UnicastRemoteObject
 			  .exportObject((RmiService) service, 0);
 			Registry registry = LocateRegistry.createRegistry(1099);
-			registry.bind("CommandeService", stub);
+			registry.bind("RestoService", stub);
 		} catch (RemoteException | AlreadyBoundException e) {
 			e.printStackTrace();
 		}

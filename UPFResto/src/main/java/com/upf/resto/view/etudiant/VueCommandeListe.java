@@ -1,8 +1,9 @@
-package com.upf.resto.view;
+package com.upf.resto.view.etudiant;
 
 import java.awt.BorderLayout;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -16,26 +17,27 @@ import com.upf.resto.business.CommandeManager;
 import com.upf.resto.datamodel.Commande;
 import com.upf.resto.datamodel.Etudiant;
 import com.upf.resto.datamodel.Repas;
+import com.upf.resto.service.RmiService;
 
 public class VueCommandeListe extends JPanel{
 
 	private static final long serialVersionUID = 1L;
 
-	private @Autowired CommandeManager commandeManager;
+	private @Autowired RmiService service;
 	private List<Commande> commandes = new ArrayList<>();
 	private JTable table;
 
-	public VueCommandeListe() {
+	public VueCommandeListe(Etudiant etudiant) {
+		//TODO commandes = service.consulterCommande(etudiant.getLoging());
 		setLayout(new BorderLayout());
 
-		//Commande List
 		JPanel p = new JPanel();
 		table = new JTable(new CommandeTableModel());
 		JScrollPane scrollPane = new JScrollPane(table);
 		p.add(scrollPane);
 		add("Center", p);
 
-		JButton b = new JButton("Ajouter");
+		/*JButton b = new JButton("Ajouter");
 		b.addActionListener((event)->{
 			Commande c = new Commande();
 			c.setId("C123");
@@ -52,13 +54,14 @@ public class VueCommandeListe extends JPanel{
 			commandes.add(c);
 			((AbstractTableModel)table.getModel()).fireTableDataChanged();
 		});
-		add("North", b);
+		add("North", b);*/
 		
 		JButton validButton = new JButton("Valider");
 		validButton.addActionListener((event)->{
 			int index = table.getSelectedRow();
 			if(index>= 0) {
 				Commande commande = commandes.get(index);
+				//TODO service.validerCommande(commande.getId());
 				commande.setValide(true);
 				((AbstractTableModel)table.getModel()).fireTableDataChanged();
 			}
@@ -90,7 +93,8 @@ public class VueCommandeListe extends JPanel{
 			case 1:
 				return commande.getEtudiant().getNom();
 			case 2:
-				return commande.getRepas().getId();
+				String collect = commande.getRepas().stream().map(Repas::getLabel).collect(Collectors.joining(","));
+				return collect;
 			case 3:
 				return commande.getPrixTotal();
 			case 4:

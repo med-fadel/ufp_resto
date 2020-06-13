@@ -1,20 +1,22 @@
-package com.upf.resto.view;
+package com.upf.resto.view.admin;
 
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-public class AdminMain extends JFrame{
+public class VueAdmin extends JFrame{
 	
 	private static final long serialVersionUID = 1L;
 
-	public AdminMain() {
+	public VueAdmin() {
 		VueCommandeListe vueAdmin = new VueCommandeListe();
+		VueGestionCompte vueGestionCompte = new VueGestionCompte();
 		
 		JTabbedPane tabbedPane = new JTabbedPane();
 		
 		tabbedPane.add("Commandes", vueAdmin);
+		tabbedPane.add("Comptes", vueGestionCompte);
 		
 		setContentPane(tabbedPane);
 		pack();
@@ -36,6 +38,6 @@ public class AdminMain extends JFrame{
 		} catch (UnsupportedLookAndFeelException e) {
 			e.printStackTrace();
 		}
-		new AdminMain();
+		new VueAdmin();
 	}
 }

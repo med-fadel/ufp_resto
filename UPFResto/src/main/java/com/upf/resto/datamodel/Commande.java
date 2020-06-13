@@ -1,5 +1,7 @@
 package com.upf.resto.datamodel;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,7 +13,7 @@ public class Commande {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private String id;
 	private Etudiant etudiant;
-	private Repas repas;
+	private List<Repas> repas;
 	private Double prixTotal;
 	private Boolean valide = false;
 	
@@ -23,7 +25,7 @@ public class Commande {
 		return etudiant;
 	}
 
-	public Repas getRepas() {
+	public List<Repas> getRepas() {
 		return repas;
 	}
 
@@ -43,7 +45,7 @@ public class Commande {
 		this.etudiant = etudiant;
 	}
 
-	public void setRepas(Repas repas) {
+	public void setRepas(List<Repas> repas) {
 		this.repas = repas;
 	}
 
