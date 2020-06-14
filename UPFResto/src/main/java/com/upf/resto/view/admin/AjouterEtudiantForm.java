@@ -29,6 +29,8 @@ public class AjouterEtudiantForm extends JPanel{
 
 	private static final long serialVersionUID = 1L;
 	private String s;
+	private LabeledTextField loginPanel;
+	private LabeledTextField mdpPanel;
 	private LabeledTextField nomPanel;
 	private LabeledTextField prenomPanel;
 	private JDatePickerImpl datePicker;
@@ -38,6 +40,11 @@ public class AjouterEtudiantForm extends JPanel{
 
 	public AjouterEtudiantForm() {
 		setLayout(new BoxLayout(this, Y_AXIS));
+		loginPanel = new LabeledTextField("Login", 20, 60, true);
+		add(loginPanel);
+		mdpPanel = new LabeledTextField("Mdp", 20, 60, true);
+		add(mdpPanel);
+		
 		nomPanel = new LabeledTextField("Nom", 20, 60, true);
 		add(nomPanel);
 		prenomPanel = new LabeledTextField("Prenom", 20, 60, true);
@@ -78,6 +85,8 @@ public class AjouterEtudiantForm extends JPanel{
 	
 	public Etudiant getEtudiant() {
 		Etudiant res = new Etudiant();
+		res.setLoging(loginPanel.getText());
+		res.setPrenom(mdpPanel.getText());
 		res.setNom(nomPanel.getText());
 		res.setPrenom(prenomPanel.getText());
 		res.setDateDeNaissance(((Date)datePicker.getModel().getValue()));

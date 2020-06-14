@@ -3,6 +3,7 @@ package com.upf.resto.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.upf.resto.business.CommandeManager;
 import com.upf.resto.business.EtudiantManager;
@@ -11,6 +12,7 @@ import com.upf.resto.datamodel.Commande;
 import com.upf.resto.datamodel.Etudiant;
 import com.upf.resto.datamodel.Repas;
 
+@Component
 public class RmiServiceImpl implements RmiService {
 	private @Autowired CommandeManager commandeManager;
 	private @Autowired EtudiantManager etudiantManager;

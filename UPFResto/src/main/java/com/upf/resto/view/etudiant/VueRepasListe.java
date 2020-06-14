@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.AbstractTableModel;
 
 import com.upf.resto.datamodel.Commande;
@@ -38,11 +39,13 @@ public class VueRepasListe extends JPanel{
 
 		JPanel p = new JPanel();
 		JTable table = new JTable(new CommandeTableModel());
+		table.setRowSelectionAllowed(true);
+		table.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		JScrollPane scrollPane = new JScrollPane(table);
 		p.add(scrollPane);
 		add("Center", p);
 
-		/*JButton b = new JButton("Ajouter");
+		JButton b = new JButton("Ajouter");
 		b.addActionListener((event)->{
 			Repas r = new Repas();
 			r.setLabel("Pannini");
@@ -51,14 +54,18 @@ public class VueRepasListe extends JPanel{
 			repas.add(r);
 			((AbstractTableModel)table.getModel()).fireTableDataChanged();
 		});
-		add("East", b);*/
+		add("East", b);
 		
 		JButton b1 = new JButton("Ajouter");
 		b1.addActionListener((event)->{
-			Repas r = repas.get(table.getSelectedRow());
+			List<Repas> lr = new ArrayList<>();
+			for (int i = 0; i < table.getSelectedRows().length; i++) {
+				 lr.add(repas.get(table.getSelectedRows()[i]));
+			}
+
 			Commande commande = new Commande();
 			commande.setEtudiant(etudiant);
-			commande.setRepas(Arrays.asList(r));
+			commande.setRepas(lr);
 			
 			
 			//TODO service.ajouterCommande(commande);

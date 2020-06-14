@@ -7,13 +7,14 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class Server {
+	private @Autowired RmiService service;
 	
 	public Server() {
-		RmiService service = new RmiServiceImpl();
 		try {
 			Remote stub = UnicastRemoteObject
 			  .exportObject(service, 0);

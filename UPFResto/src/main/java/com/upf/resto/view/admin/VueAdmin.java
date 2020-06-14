@@ -12,7 +12,6 @@ public class VueAdmin extends JFrame{
 		try {
 			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		VueCommandeListe vueAdmin = new VueCommandeListe();
@@ -29,5 +28,9 @@ public class VueAdmin extends JFrame{
 		setTitle("Admin");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
+	}
+	
+	public static void main(String[] args) {
+		new VueAdmin();
 	}
 }
