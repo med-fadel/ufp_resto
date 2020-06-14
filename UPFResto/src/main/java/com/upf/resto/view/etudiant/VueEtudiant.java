@@ -1,5 +1,9 @@
 package com.upf.resto.view.etudiant;
 
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.util.Date;
 
 import javax.swing.JDialog;
@@ -18,7 +22,6 @@ public class VueEtudiant extends JFrame{
 	private Etudiant etudiant;
 
 	public VueEtudiant() {
-		/* TODO
 		try {
 			Registry registry = LocateRegistry.getRegistry();
 			service = (RmiService) registry
@@ -26,19 +29,10 @@ public class VueEtudiant extends JFrame{
 		} catch (RemoteException | NotBoundException e) {
 			System.exit(0);
 		}
-		*/
 
 		final JDialog frame = new JDialog(this, "Login", true);
 		frame.getContentPane().add(new VueLogin((login, mdp) -> {
-			//TODO etudiant = service.auth(login, mdp);
-			etudiant = new Etudiant();
-			etudiant.setNom("Toto");
-			etudiant.setPrenom("Ba");
-			etudiant.setDateDeNaissance(new Date());
-			etudiant.setSexe("Male");
-			etudiant.setEmail("toto@org.com");
-			etudiant.setFormation(Formation.CONTINUE);
-			etudiant.setSolde(20.0);
+			etudiant = service.auth(login, mdp);
 			if(etudiant == null) System.exit(0);
 			frame.setModal(false);
 			frame.setVisible(false);

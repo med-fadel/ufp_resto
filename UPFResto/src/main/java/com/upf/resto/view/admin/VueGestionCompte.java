@@ -23,7 +23,7 @@ public class VueGestionCompte extends JPanel{
 	private List<Etudiant> etudiants = new ArrayList<>();
 
 	public VueGestionCompte() {
-		//TODO etudiants = etudiantManager.listerEtudiants();
+		etudiants = etudiantManager.listerEtudiants();
 		setLayout(new BorderLayout());
 		AjouterEtudiantForm ajouterEtudiant = new AjouterEtudiantForm();
 
@@ -37,7 +37,7 @@ public class VueGestionCompte extends JPanel{
 		JButton b = new JButton("Ajouter");
 		b.addActionListener((event)->{
 			Etudiant etudiant = ajouterEtudiant.getEtudiant();
-			//TODO etudiantManager.ajouterEtudiant(etudiant);
+			etudiantManager.ajouterEtudiant(etudiant);
 			etudiants.add(etudiant);
 			((AbstractTableModel)table.getModel()).fireTableDataChanged();
 		});

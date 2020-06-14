@@ -11,9 +11,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.upf.resto.business.CommandeManager;
 import com.upf.resto.datamodel.Commande;
 import com.upf.resto.datamodel.Etudiant;
 import com.upf.resto.datamodel.Repas;
@@ -23,14 +20,10 @@ public class VueCommandeListe extends JPanel{
 
 	private static final long serialVersionUID = 1L;
 
-	private RmiService service;
-	private Etudiant etudiant;
 	private List<Commande> commandes = new ArrayList<>();
 
 	public VueCommandeListe(Etudiant etudiant, RmiService service) {
-		this.etudiant = etudiant;
-		this.service = service;
-		//TODO commandes = service.consulterCommande(etudiant.getLoging());
+		commandes = service.consulterCommande(etudiant.getLoging());
 		setLayout(new BorderLayout());
 
 		JPanel p = new JPanel();
@@ -38,32 +31,13 @@ public class VueCommandeListe extends JPanel{
 		JScrollPane scrollPane = new JScrollPane(table);
 		p.add(scrollPane);
 		add("Center", p);
-
-		/*JButton b = new JButton("Ajouter");
-		b.addActionListener((event)->{
-			Commande c = new Commande();
-			c.setId("C123");
-			c.setPrixTotal(100.00);
-			c.setValide(false);
-
-			Etudiant e = new Etudiant();
-			e.setNom("MoMo");
-			c.setEtudiant(e);
-
-			Repas r = new Repas();
-			r.setId("R123");
-			c.setRepas(r);
-			commandes.add(c);
-			((AbstractTableModel)table.getModel()).fireTableDataChanged();
-		});
-		add("North", b);*/
 		
 		JButton validButton = new JButton("Valider");
 		validButton.addActionListener((event)->{
 			int index = table.getSelectedRow();
 			if(index>= 0) {
 				Commande commande = commandes.get(index);
-				//TODO service.validerCommande(commande.getId());
+				service.validerCommande(commande.getId());
 				commande.setValide(true);
 				((AbstractTableModel)table.getModel()).fireTableDataChanged();
 			}

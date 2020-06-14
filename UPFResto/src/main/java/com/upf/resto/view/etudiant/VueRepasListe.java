@@ -2,7 +2,6 @@ package com.upf.resto.view.etudiant;
 
 import java.awt.BorderLayout;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -22,14 +21,10 @@ public class VueRepasListe extends JPanel{
 
 	private static final long serialVersionUID = 1L;
 
-	private RmiService service;
-	private Etudiant etudiant;
 	private List<Repas> repas = new ArrayList<>();
 
 	public VueRepasListe(Etudiant etudiant, RmiService service) {
-		this.etudiant = etudiant;
-		this.service = service;
-		//TODO repas = service.getListRepas();
+		repas = service.getListRepas();
 		
 		setLayout(new BorderLayout());
 		
@@ -68,7 +63,7 @@ public class VueRepasListe extends JPanel{
 			commande.setRepas(lr);
 			
 			
-			//TODO service.ajouterCommande(commande);
+			service.ajouterCommande(commande);
 		});
 		add("South", b1);
 	}

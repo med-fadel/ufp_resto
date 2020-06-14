@@ -25,7 +25,7 @@ public class VueCommandeListe extends JPanel{
 	private List<Commande> commandes = new ArrayList<>();
 
 	public VueCommandeListe() {
-		//TODO commandes = commandeManager.listerCommandes();
+		commandes = commandeManager.listerCommandes();
 		setLayout(new BorderLayout());
 
 		JPanel p = new JPanel();
@@ -33,33 +33,13 @@ public class VueCommandeListe extends JPanel{
 		JScrollPane scrollPane = new JScrollPane(table);
 		p.add(scrollPane);
 		add("Center", p);
-
-		/*JButton b = new JButton("Ajouter");
-		b.addActionListener((event)->{
-			Commande c = new Commande();
-			c.setId("C123");
-			c.setPrixTotal(100.00);
-			c.setValide(false);
-
-			Etudiant e = new Etudiant();
-			e.setNom("MoMo");
-			c.setEtudiant(e);
-
-			Repas r = new Repas();
-			r.setId("R123");
-			r.setLabel("Pannini");
-			c.setRepas(asList(r));
-			commandes.add(c);
-			((AbstractTableModel)table.getModel()).fireTableDataChanged();
-		});
-		add("North", b);*/
 		
 		JButton validButton = new JButton("Valider");
 		validButton.addActionListener((event)->{
 			int index = table.getSelectedRow();
 			if(index>= 0) {
 				Commande commande = commandes.get(index);
-				//TODO commandeManager.validerCommande(commande.getId());
+				commandeManager.validerCommande(commande.getId());
 				commande.setValide(true);
 				((AbstractTableModel)table.getModel()).fireTableDataChanged();
 			}
