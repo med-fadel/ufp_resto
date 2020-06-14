@@ -16,11 +16,13 @@ public class VueAdmin extends JFrame{
 		}
 		VueCommandeListe vueAdmin = new VueCommandeListe();
 		VueGestionCompte vueGestionCompte = new VueGestionCompte();
+		VueRepasListe vueRepasListe = new VueRepasListe();
 		
 		JTabbedPane tabbedPane = new JTabbedPane();
 		
 		tabbedPane.add("Commandes", vueAdmin);
 		tabbedPane.add("Comptes", vueGestionCompte);
+		tabbedPane.add("Repas", vueRepasListe);
 		
 		setContentPane(tabbedPane);
 		pack();
