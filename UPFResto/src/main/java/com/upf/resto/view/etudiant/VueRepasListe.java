@@ -39,17 +39,6 @@ public class VueRepasListe extends JPanel{
 		JScrollPane scrollPane = new JScrollPane(table);
 		p.add(scrollPane);
 		add("Center", p);
-
-		JButton b = new JButton("Ajouter");
-		b.addActionListener((event)->{
-			Repas r = new Repas();
-			r.setLabel("Pannini");
-			r.setPrix(20.0);
-			r.setQuantite(18.0);
-			repas.add(r);
-			((AbstractTableModel)table.getModel()).fireTableDataChanged();
-		});
-		add("East", b);
 		
 		JButton b1 = new JButton("Ajouter");
 		b1.addActionListener((event)->{
