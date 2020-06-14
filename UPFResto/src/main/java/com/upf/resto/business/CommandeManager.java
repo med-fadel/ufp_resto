@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.upf.resto.dao.CommandeRepository;
 import com.upf.resto.datamodel.Commande;
@@ -12,10 +13,12 @@ import com.upf.resto.datamodel.Etudiant;
 import com.upf.resto.datamodel.Formation;
 import com.upf.resto.datamodel.Repas;
 
+@Component
 public class CommandeManager{
 
 	private @Autowired CommandeRepository repository;
 	private @Autowired EtudiantManager etudiantManager;
+	private @Autowired RepasManager repasManager;
 
 
 	public void ajouterCommande(Commande commande) {
@@ -32,7 +35,7 @@ public class CommandeManager{
 			Double total = repas.stream().map(Repas::getPrix).reduce(0.0, (subtotal, element) -> subtotal + element);
 			commande.setPrixTotal(total);
 		}
-
+		repas.forEach(r-> repasManager.commanderRepas(r.getId()));
 		etudiantManager.rechargeCompte(etudiant.getLoging(), (etudiant.getSolde() - commande.getPrixTotal()));
 		repository.save(commande);
 	}

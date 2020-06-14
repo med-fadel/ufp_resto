@@ -5,12 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.upf.resto.dao.EtudiantRepository;
 import com.upf.resto.datamodel.Commande;
 import com.upf.resto.datamodel.Etudiant;
 import com.upf.resto.datamodel.Formation;
 
+@Component
 public class EtudiantManager{
 	private @Autowired EtudiantRepository repository;
 

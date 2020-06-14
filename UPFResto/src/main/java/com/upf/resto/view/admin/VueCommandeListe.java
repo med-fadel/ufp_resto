@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.upf.resto.business.CommandeManager;
 import com.upf.resto.datamodel.Commande;
-import com.upf.resto.datamodel.Etudiant;
 import com.upf.resto.datamodel.Repas;
 
 public class VueCommandeListe extends JPanel{
@@ -24,14 +23,13 @@ public class VueCommandeListe extends JPanel{
 
 	private @Autowired CommandeManager commandeManager;
 	private List<Commande> commandes = new ArrayList<>();
-	private JTable table;
 
 	public VueCommandeListe() {
 		//TODO commandes = commandeManager.listerCommandes();
 		setLayout(new BorderLayout());
 
 		JPanel p = new JPanel();
-		table = new JTable(new CommandeTableModel());
+		JTable table = new JTable(new CommandeTableModel());
 		JScrollPane scrollPane = new JScrollPane(table);
 		p.add(scrollPane);
 		add("Center", p);
@@ -49,7 +47,8 @@ public class VueCommandeListe extends JPanel{
 
 			Repas r = new Repas();
 			r.setId("R123");
-			c.setRepas(r);
+			r.setLabel("Pannini");
+			c.setRepas(asList(r));
 			commandes.add(c);
 			((AbstractTableModel)table.getModel()).fireTableDataChanged();
 		});

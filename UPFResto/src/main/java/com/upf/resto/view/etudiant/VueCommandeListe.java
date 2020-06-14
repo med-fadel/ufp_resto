@@ -23,16 +23,18 @@ public class VueCommandeListe extends JPanel{
 
 	private static final long serialVersionUID = 1L;
 
-	private @Autowired RmiService service;
+	private RmiService service;
+	private Etudiant etudiant;
 	private List<Commande> commandes = new ArrayList<>();
-	private JTable table;
 
-	public VueCommandeListe(Etudiant etudiant) {
+	public VueCommandeListe(Etudiant etudiant, RmiService service) {
+		this.etudiant = etudiant;
+		this.service = service;
 		//TODO commandes = service.consulterCommande(etudiant.getLoging());
 		setLayout(new BorderLayout());
 
 		JPanel p = new JPanel();
-		table = new JTable(new CommandeTableModel());
+		JTable table = new JTable(new CommandeTableModel());
 		JScrollPane scrollPane = new JScrollPane(table);
 		p.add(scrollPane);
 		add("Center", p);

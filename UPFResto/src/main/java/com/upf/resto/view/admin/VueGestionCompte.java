@@ -21,7 +21,6 @@ public class VueGestionCompte extends JPanel{
 
 	private @Autowired EtudiantManager etudiantManager;
 	private List<Etudiant> etudiants = new ArrayList<>();
-	private JTable table;
 
 	public VueGestionCompte() {
 		//TODO etudiants = etudiantManager.listerEtudiants();
@@ -29,7 +28,7 @@ public class VueGestionCompte extends JPanel{
 		AjouterEtudiantForm ajouterEtudiant = new AjouterEtudiantForm();
 
 		JPanel p = new JPanel();
-		table = new JTable(new CommandeTableModel());
+		JTable table = new JTable(new CommandeTableModel());
 		JScrollPane scrollPane = new JScrollPane(table);
 		p.add(scrollPane);
 		add("Center", p);

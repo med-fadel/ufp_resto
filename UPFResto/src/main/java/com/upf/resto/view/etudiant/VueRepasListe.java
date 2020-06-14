@@ -3,7 +3,6 @@ package com.upf.resto.view.etudiant;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -12,10 +11,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.upf.resto.business.CommandeManager;
-import com.upf.resto.business.RepasManager;
 import com.upf.resto.datamodel.Commande;
 import com.upf.resto.datamodel.Etudiant;
 import com.upf.resto.datamodel.Repas;
@@ -26,13 +21,13 @@ public class VueRepasListe extends JPanel{
 
 	private static final long serialVersionUID = 1L;
 
-	private @Autowired RmiService service;
-	private List<Repas> repas = new ArrayList<>();
-	private JTable table;
+	private RmiService service;
 	private Etudiant etudiant;
+	private List<Repas> repas = new ArrayList<>();
 
-	public VueRepasListe(Etudiant etudiant) {
+	public VueRepasListe(Etudiant etudiant, RmiService service) {
 		this.etudiant = etudiant;
+		this.service = service;
 		//TODO repas = service.getListRepas();
 		
 		setLayout(new BorderLayout());
@@ -42,7 +37,7 @@ public class VueRepasListe extends JPanel{
 		add("North",soldePanel);
 
 		JPanel p = new JPanel();
-		table = new JTable(new CommandeTableModel());
+		JTable table = new JTable(new CommandeTableModel());
 		JScrollPane scrollPane = new JScrollPane(table);
 		p.add(scrollPane);
 		add("Center", p);

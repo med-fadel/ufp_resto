@@ -85,6 +85,12 @@ public class AjouterEtudiantForm extends JPanel{
 		res.setEmail(emailPanel.getText());
 		res.setFormation((Formation)formations.getSelectedItem());
 		res.setSolde(Integer.parseInt(soldePanel.getText()));
+		
+		nomPanel.setText("");
+		prenomPanel.setText("");
+		emailPanel.setText("");
+		soldePanel.setText("");
+		
 		return res;
 	}
 
